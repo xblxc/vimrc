@@ -1,0 +1,29 @@
+snippet html5 "<!DOCTYPE html>..<meta viewport..."
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="default" name="apple-mobile-web-app-status-bar-style">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>${0}</title>
+	</head>
+	<body>
+		${1}
+	</body>
+	</html>
+snippet link '<link rel="stylesheet" href="" />'
+	<link rel="stylesheet" href="${1:style.css}" />
+snippet meta '<meta name="" content="" />'
+	<meta name="${1}" content="${2}" />
+snippet script "<script>.."
+	<script type="text/javascript">
+		${0}
+	</script>
+snippet scripts '<script src="">..'
+	<script src="${0}.js"></script>
+snippet scriptt '<script type="" id="">..'
+	<script type="${1}" id="${2}">
+		${0}
+	</script>

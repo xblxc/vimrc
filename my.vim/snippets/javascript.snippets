@@ -1,0 +1,16 @@
+snippet fun "function [name]([param]){ .. }"
+	function ${1:function_name}(${2}) {
+		${0}
+	}
+snippet func "function(){ .. }"
+	function(){
+		${0}
+	}
+snippet try "try {..} catch (e) {..}"
+	try {
+			${1}
+	} catch (${2:e}) {
+			${0}
+	}
+snippet c "console.log(..)"
+	console.log(${0});
