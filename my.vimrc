@@ -66,7 +66,8 @@ set list listchars=tab:»-
  Plugin 'gmarik/Vundle.vim'
  Plugin 'kien/ctrlp.vim'
  Plugin 'The-NERD-tree'
- Plugin 'The-NERD-Commenter'
+ "Plugin 'The-NERD-Commenter'
+ Plugin 'scrooloose/nerdcommenter'
  Plugin 'Lokaltog/vim-easymotion'
  "Plugin 'auto-pairs'
  "Plugin 'delimitMate.vim'
@@ -228,8 +229,31 @@ set list listchars=tab:»-
   nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
   "for tern : Auto using tern_for_vim plugin in HTML files
   autocmd FileType html set ft=html.javascript
-  cmap ssj set ft=javascript
-  cmap ssh set ft=html.javascript
+  "cmap ssj set ft=javascript
+  "cmap ssh set ft=html.javascript
 
   "删除键无法删除
   set backspace=indent,eol,start
+
+  "修复.vue 混合文件的注释问题
+  let g:ft = ''
+  fu! NERDCommenter_before()
+    if &ft == 'vue'
+      let g:ft = 'vue'
+      let stack = synstack(line('.'), col('.'))
+      if len(stack) > 0
+        let syn = synIDattr((stack)[0], 'name')
+        if len(syn) > 0
+          let syn = tolower(syn)
+          exe 'setf '.syn
+        endif
+      endif
+    endif
+  endfu
+  fu! NERDCommenter_after()
+    if g:ft == 'vue'
+      setf vue
+      g:ft
+    endif
+  endfu
+
